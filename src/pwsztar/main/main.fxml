@@ -16,5 +16,6 @@
         <Button layoutX="104.0" layoutY="204.0" mnemonicParsing="false" onAction="#onButtonPressedSql" prefHeight="53.0" prefWidth="103.0" text="SQL" />
         <Button layoutX="453.0" layoutY="204.0" mnemonicParsing="false" onAction="#onButtonPressedMail" prefHeight="53.0" prefWidth="103.0" text="JavaMail" />
         <Text layoutX="233.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wybierz proszę co chcesz zrobić:" />
+        <Text layoutX="242.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dariusz Czajka, PWSZ Tarnów" />
     </children>
 </AnchorPane>
