@@ -8,17 +8,28 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mailPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="400" prefWidth="640" VBox.vgrow="ALWAYS"
-            xmlns:fx="http://javafx.com/fxml" fx:controller="pwsztar.mail.MailController">
+<AnchorPane fx:id="mailPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="400" prefWidth="640" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pwsztar.mail.MailController">
     <children>
-        <Button layoutX="560.0" layoutY="51.0" mnemonicParsing="false" text="Wyślij" />
-        <Text layoutX="283.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="JavaMail">
+        <Button layoutX="559.0" layoutY="64.0" mnemonicParsing="false" onAction="#onSendButtonPressed" prefHeight="25.0" prefWidth="75.0" text="Wyślij" />
+        <Text layoutX="293.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="JavaMail">
             <font>
                 <Font size="20.0" />
             </font>
         </Text>
-        <TextField layoutX="33.0" layoutY="51.0" prefHeight="25.0" prefWidth="513.0" promptText="Adres e-mail" />
-        <Button layoutX="7.0" layoutY="2.0" onAction="#onBackButtonPressed" mnemonicParsing="false" text="&lt;" />
-        <TextArea layoutX="33.0" layoutY="100.0" prefHeight="253.0" prefWidth="513.0" promptText="Wiadomość" />
+        <TextField fx:id="emailTextField" layoutX="33.0" layoutY="64.0" prefHeight="25.0" prefWidth="513.0" promptText="Adres e-mail" />
+        <Button layoutX="7.0" layoutY="2.0" mnemonicParsing="false" onAction="#onBackButtonPressed" text="&lt;" />
+        <TextArea fx:id="messageTextArea" layoutX="33.0" layoutY="117.0" prefHeight="253.0" prefWidth="513.0" promptText="Wiadomość" />
+        <Text fx:id="successText" fill="#44a142" layoutX="36.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wysyłanie pomyślne" textAlignment="CENTER" visible="false" wrappingWidth="624.0">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+      <Button fx:id="add_attachments" layoutX="559.0" layoutY="117.0" mnemonicParsing="false" onAction="#onAddAttachmentsButtonPressed" prefHeight="25.0" prefWidth="75.0" text="Załącznik.." />
+      <Text fx:id="attachmentOnSuccessPrompt" layoutX="559.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pomyślnie dodano załącznik" textAlignment="CENTER" visible="false" wrappingWidth="75.0" />
+      <Text fx:id="errorText" fill="#a14242" layoutX="33.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Błąd: " textAlignment="CENTER" visible="false" wrappingWidth="630.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>
