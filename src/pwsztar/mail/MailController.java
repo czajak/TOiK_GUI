@@ -31,6 +31,7 @@ public class MailController implements Initializable {
     @FXML private Text attachmentOnSuccessPrompt;
     @FXML private AnchorPane mailPane;
     @FXML private TextField emailTextField;
+    @FXML private TextField subjectTextField;
     @FXML private TextArea messageTextArea;
     @FXML private Text successText;
     @FXML private Text errorText;
@@ -38,7 +39,7 @@ public class MailController implements Initializable {
     private Session session;
 
     private final String FROM = "toik.javamail@gmail.com";
-    private final String PASSWORD = "XXXXXXXXXXXXXX";
+    private final String PASSWORD = "ReallyToughPassword:)";
 
     private List<File> attachmentsList;
 
@@ -61,7 +62,8 @@ public class MailController implements Initializable {
     // Metoda która obsługuje działanie przycisku Wyślij, uruchamia metodę sendEmail.
 
     @FXML private void onSendButtonPressed(ActionEvent event) throws IOException, InterruptedException {
-        sendEmail(emailTextField.getText(), messageTextArea.getText());
+        String recipients[] = emailTextField.getText().split(";");
+        sendEmail(recipients, subjectTextField.getText(), messageTextArea.getText());
     }
 
     // Metoda która obsługuje działanie przycisku "Załączniki..", wywołuje okno wyboru plików i jeżeli użytkownik
@@ -97,15 +99,21 @@ public class MailController implements Initializable {
     // Metoda sendEmail - główna metoda klasy. Wysyła wiadomości e-mail wraz z załącznikami - jeżeli list attachmentsList
     // nie jest pusta.
 
-    private void sendEmail(String recipient, String message){
+    private void sendEmail(String recipients[], String subject, String message){
         if(session==null){
             initializeEmailAccount();
         }
         try{
             Message msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress(FROM));
-            msg.addRecipient(Message.RecipientType.TO,new InternetAddress(recipient));
-            msg.setSubject("Dariusz Czajka");
+            msg.addRecipient(Message.RecipientType.TO,new InternetAddress(recipients[0]));
+            if(recipients.length > 1){
+                for(int i=0;i<recipients.length;i++)
+                {
+                    msg.addRecipient(Message.RecipientType.BCC,new InternetAddress(recipients[i]));
+                }
+            }
+            msg.setSubject(subject);
             msg.setText(message);
 
             if(attachmentsList != null && !attachmentsList.isEmpty()){
@@ -149,6 +157,7 @@ public class MailController implements Initializable {
     private void cls(){
         emailTextField.setText("");
         messageTextArea.setText("");
+        subjectTextField.setText("");
         attachmentOnSuccessPrompt.setVisible(false);
         errorText.setVisible(false);
         successText.setVisible(false);

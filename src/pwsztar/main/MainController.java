@@ -22,7 +22,7 @@ public class MainController implements Initializable {
 
     @FXML
     private void onButtonPressedSql(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../sql/sql.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../jdbc_credentials/credentials.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
